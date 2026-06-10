@@ -1,0 +1,1 @@
+import{ab as r,aa as t}from"./mui-core-BtURJHqT.js";import{r as a}from"./index-qfMyOlOJ.js";var e={},o=t;Object.defineProperty(e,"__esModule",{value:!0});var u=e.default=void 0,i=o(a()),v=r;u=e.default=(0,i.default)((0,v.jsx)("path",{d:"M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-5 14H7v-2h7zm3-4H7v-2h10zm0-4H7V7h10z"}),"Article");export{u as d};

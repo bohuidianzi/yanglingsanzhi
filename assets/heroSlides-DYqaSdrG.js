@@ -1,0 +1,1 @@
+import{c as s}from"./index-qfMyOlOJ.js";const o={getList:()=>s.get("/hero-slides"),getAll:()=>s.get("/hero-slides/all"),create:e=>s.post("/hero-slides",e),update:(e,t)=>s.put(`/hero-slides/${e}`,t),delete:e=>s.delete(`/hero-slides/${e}`)};export{o as h};
