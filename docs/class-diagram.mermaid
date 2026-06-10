@@ -1,0 +1,148 @@
+classDiagram
+    class AdminUser {
+        +int id
+        +string username
+        +string passwordHash
+        +string displayName
+        +Date createdAt
+        +Date updatedAt
+    }
+
+    class Category {
+        +int id
+        +string name
+        +string slug
+        +string description
+        +string icon
+        +int sortOrder
+        +Date createdAt
+        +Date updatedAt
+        +getProducts() Product[]
+    }
+
+    class Product {
+        +int id
+        +int categoryId
+        +string name
+        +string slug
+        +string model
+        +string summary
+        +string description
+        +string coverImage
+        +string[] applicationScenarios
+        +int sortOrder
+        +int status
+        +Date createdAt
+        +Date updatedAt
+        +getImages() ProductImage[]
+        +getParams() ProductParam[]
+        +getDocs() ProductDoc[]
+    }
+
+    class ProductImage {
+        +int id
+        +int productId
+        +string imageUrl
+        +int sortOrder
+        +Date createdAt
+    }
+
+    class ProductParam {
+        +int id
+        +int productId
+        +string paramName
+        +string paramValue
+        +int sortOrder
+        +Date createdAt
+    }
+
+    class ProductDoc {
+        +int id
+        +int productId
+        +string docName
+        +string docUrl
+        +string docType
+        +int fileSize
+        +Date createdAt
+    }
+
+    class Case {
+        +int id
+        +string title
+        +string slug
+        +string province
+        +string region
+        +string summary
+        +string description
+        +string coverImage
+        +int isFeatured
+        +int sortOrder
+        +int status
+        +Date createdAt
+        +Date updatedAt
+        +getImages() CaseImage[]
+    }
+
+    class CaseImage {
+        +int id
+        +int caseId
+        +string imageUrl
+        +int sortOrder
+        +Date createdAt
+    }
+
+    class TeamMember {
+        +int id
+        +string name
+        +string title
+        +string avatar
+        +string bio
+        +int sortOrder
+        +int status
+        +Date createdAt
+        +Date updatedAt
+    }
+
+    class Certificate {
+        +int id
+        +string title
+        +string certType
+        +string certNumber
+        +string issueAuthority
+        +Date issueDate
+        +string imageUrl
+        +string description
+        +int sortOrder
+        +int status
+        +Date createdAt
+        +Date updatedAt
+    }
+
+    class Inquiry {
+        +int id
+        +string name
+        +string phone
+        +string email
+        +string company
+        +string intentionType
+        +string message
+        +int productId
+        +string status
+        +string adminNote
+        +Date createdAt
+        +Date updatedAt
+    }
+
+    class SiteSetting {
+        +int id
+        +string settingKey
+        +string settingValue
+        +Date updatedAt
+    }
+
+    Category "1" --> "*" Product : contains
+    Product "1" --> "*" ProductImage : has
+    Product "1" --> "*" ProductParam : has
+    Product "1" --> "*" ProductDoc : has
+    Case "1" --> "*" CaseImage : has
+    Product "1" --> "0..1" Inquiry : referenced_by

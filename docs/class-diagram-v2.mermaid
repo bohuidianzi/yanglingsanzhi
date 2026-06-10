@@ -1,0 +1,135 @@
+classDiagram
+    class V2Colors {
+        +primary: Object
+        +secondary: Object
+        +success: Object
+        +accent: Object
+        +background: Object
+        +text: Object
+        +divider: String
+    }
+
+    class Motion {
+        +CARD_HOVER_SCALE: number
+        +CARD_HOVER_SHADOW: number
+        +BTN_HOVER_SCALE: number
+        +SCROLL_THRESHOLD: number
+        +FADE_UP: Object
+        +DRAWER_DURATION: number
+    }
+
+    class AnimatedCard {
+        +hoverScale: number
+        +hoverBorderColor: string
+        +enableBorderAnim: boolean
+        +children: ReactNode
+        +render(): JSX.Element
+    }
+
+    class LazyImage {
+        +src: string
+        +alt: string
+        +preload: boolean
+        +objectFit: string
+        +sx: SxProps
+        +render(): JSX.Element
+    }
+
+    class ImageUploader {
+        +value: string
+        +onChange: Function
+        +label: string
+        +accept: string
+        +handleUpload(): void
+        +handleDelete(): void
+        +render(): JSX.Element
+    }
+
+    class RichTextEditor {
+        +value: string
+        +onChange: Function
+        +placeholder: string
+        +minHeight: number
+        +render(): JSX.Element
+    }
+
+    class SectionDecorator {
+        +variant: string
+        +opacity: number
+        +position: string
+        +render(): JSX.Element
+    }
+
+    class MobileDrawer {
+        +open: boolean
+        +onClose: Function
+        +navItems: Array
+        +render(): JSX.Element
+    }
+
+    class ProvinceList {
+        +cases: Case[]
+        +onProvinceSelect: Function
+        +render(): JSX.Element
+    }
+
+    class SectionTitle {
+        +title: string
+        +subtitle: string
+        +align: string
+        +decorated: boolean
+        +render(): JSX.Element
+    }
+
+    class useScrollPosition {
+        +scrollY: number
+    }
+
+    class useHashNavigation {
+        +navigateToAnchor(id: string): void
+        +currentHash: string
+    }
+
+    class Layout {
+        +useScrollPosition()
+        +MobileDrawer
+        +render(): JSX.Element
+    }
+
+    class HomePage {
+        +useHashNavigation()
+        +AnimatedCard
+        +LazyImage
+        +SectionDecorator
+        +render(): JSX.Element
+    }
+
+    class AdminProducts {
+        +ImageUploader
+        +RichTextEditor
+        +render(): JSX.Element
+    }
+
+    class AdminSettings {
+        +homeContent: HomePageContent
+        +RichTextEditor
+        +render(): JSX.Element
+    }
+
+    V2Colors --> AnimatedCard : provides colors
+    V2Colors --> Layout : provides colors
+    V2Colors --> HomePage : provides colors
+    Motion --> AnimatedCard : provides params
+    Motion --> MobileDrawer : provides params
+    useScrollPosition --> Layout : scroll effect
+    useHashNavigation --> HomePage : anchor nav
+    AnimatedCard --> HomePage : used in
+    AnimatedCard --> Layout : used in
+    LazyImage --> HomePage : used in
+    SectionDecorator --> HomePage : used in
+    MobileDrawer --> Layout : replaces Drawer
+    ProvinceList --> CasesPage : used in
+    ImageUploader --> AdminProducts : used in
+    RichTextEditor --> AdminProducts : used in
+    RichTextEditor --> AdminSettings : used in
+    SectionTitle --> HomePage : used in

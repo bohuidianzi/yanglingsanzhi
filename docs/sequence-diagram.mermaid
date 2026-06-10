@@ -1,0 +1,92 @@
+sequenceDiagram
+    participant User as 用户浏览器
+    participant Nginx as Nginx
+    participant React as React App
+    participant API as Express API
+    participant DB as MySQL
+
+    rect rgb(230, 245, 255)
+    Note over User,DB: 场景1: 前端页面加载流程
+    User->>Nginx: GET /
+    Nginx->>User: 返回 index.html + JS/CSS
+    User->>React: Reacthydrate/渲染
+    React->>React: Router匹配 "/" → HomePage
+    React->>API: GET /api/v1/categories
+    API->>DB: SELECT * FROM categories ORDER BY sort_order
+    DB-->>API: 返回系列数据
+    API-->>React: {code:0, data: [...]}
+    React->>API: GET /api/v1/settings?key=stats_data
+    API->>DB: SELECT * FROM site_settings WHERE key='stats_data'
+    DB-->>API: 返回设置
+    API-->>React: {code:0, data: {...}}
+    React->>React: 渲染 HeroSection + EndorsementSection + ProductSeriesSection + StatsSection + CooperationCTA
+    React->>User: 完整首页呈现
+    User->>React: 点击产品系列卡片
+    React->>React: Router导航到 /products?categoryId=1
+    React->>API: GET /api/v1/products?categoryId=1
+    API->>DB: SELECT * FROM products WHERE category_id=1
+    DB-->>API: 返回产品列表
+    API-->>React: {code:0, data: {list:[...], total:5}}
+    React->>User: 产品列表页渲染
+    end
+
+    rect rgb(255, 245, 230)
+    Note over User,DB: 场景2: 后台内容管理流程
+    participant Admin as 管理员
+    participant React2 as React Admin
+    participant API2 as Express API
+    participant MW as Auth中间件
+    participant DB2 as MySQL
+
+    Admin->>React2: 访问 /admin/login
+    Admin->>React2: 输入用户名密码 → 点击登录
+    React2->>API2: POST /api/v1/auth/login {username, password}
+    API2->>DB2: SELECT * FROM admin_users WHERE username=?
+    DB2-->>API2: 返回用户记录
+    API2->>API2: bcrypt.compare验证密码
+    API2->>API2: jwt.sign生成token
+    API2-->>React2: {code:0, data:{token:"xxx", user:{...}}}
+    React2->>React2: localStorage存储token，跳转/admin
+
+    Admin->>React2: 点击"新增产品" → 填写表单
+    React2->>API2: POST /api/v1/admin/upload/image (multipart + Bearer token)
+    API2->>MW: 验证JWT
+    MW-->>API2: 认证通过
+    API2->>API2: multer保存文件 → uploads/
+    API2-->>React2: {code:0, data:{url:"/uploads/products/xxx.jpg"}}
+    React2->>API2: POST /api/v1/admin/products {name, model, images, params}
+    API2->>DB2: INSERT INTO products + product_images + product_params
+    DB2-->>API2: 插入成功
+    API2-->>React2: {code:0, data:{id:1}}
+    React2->>Admin: 提示创建成功
+    end
+
+    rect rgb(230, 255, 230)
+    Note over User,DB: 场景3: 用户咨询提交流程
+    participant User2 as 前台用户
+    participant React3 as React前端
+    participant API3 as Express API
+    participant DB3 as MySQL
+    participant AdminBack as 管理员后台
+
+    User2->>React3: 浏览产品详情页 → 点击"咨询"
+    React3->>User2: 弹出 InquiryDialog
+    User2->>React3: 填写姓名/电话/留言 → 提交
+    React3->>React3: 前端校验（必填项/手机号格式）
+    React3->>API3: POST /api/v1/inquiries {name, phone, message, intentionType, productId}
+    Note over API3: 公开接口，无需JWT
+    API3->>API3: express-validator校验参数
+    API3->>DB3: INSERT INTO inquiries
+    DB3-->>API3: 插入成功
+    API3-->>React3: {code:0, message:"提交成功"}
+    React3->>User2: 显示"提交成功"
+
+    AdminBack->>API3: GET /api/v1/admin/inquiries (带JWT)
+    API3->>DB3: SELECT * FROM inquiries ORDER BY created_at DESC
+    DB3-->>API3: 返回留言列表
+    API3-->>AdminBack: 留言数据
+    AdminBack->>API3: PUT /api/v1/admin/inquiries/1 {status:"processing"}
+    API3->>DB3: UPDATE inquiries SET status='processing'
+    DB3-->>API3: 更新成功
+    API3-->>AdminBack: 更新成功
+    end

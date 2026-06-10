@@ -1,0 +1,13 @@
+node_modules
+dist
+.env
+.env.production
+uploads/*
+!uploads/**/.gitkeep
+server/node_modules
+server/uploads
+server/.env
+*.log
+temp_*.json
+--full-page
+.DS_Store

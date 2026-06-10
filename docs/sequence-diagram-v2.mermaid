@@ -1,0 +1,44 @@
+sequenceDiagram
+    participant User
+    participant Layout
+    participant useScrollPosition
+    participant AppBar
+    participant HomePage
+    participant useHashNavigation
+    participant AnimatedCard
+    participant LazyImage
+    participant ImageUploader
+    participant UploadAPI
+    participant RichTextEditor
+    participant AdminSettings
+
+    Note over User,Layout: 场景1: 导航栏滚动效果
+    User->>Layout: 访问首页
+    Layout->>useScrollPosition: 初始化hook
+    useScrollPosition-->>Layout: scrollY=0 (透明AppBar)
+    User->>Layout: 向下滚动
+    Layout->>useScrollPosition: 监听scroll
+    useScrollPosition-->>Layout: scrollY>50 (纯色AppBar)
+    Layout->>AppBar: bgcolor=#0F2B47, boxShadow=2
+
+    Note over User,HomePage: 场景2: 锚点导航
+    User->>HomePage: 点击导航链接#products-section
+    HomePage->>useHashNavigation: navigateToAnchor("products-section")
+    useHashNavigation->>useHashNavigation: 更新URL hash
+    useHashNavigation->>useHashNavigation: scrollIntoView({behavior:"smooth"})
+
+    Note over User,AnimatedCard: 场景3: 卡片hover动效
+    User->>AnimatedCard: 鼠标hover
+    AnimatedCard->>AnimatedCard: scale=1.01 + borderColor=primary.main
+    AnimatedCard-->>User: 视觉反馈
+
+    Note over User,ImageUploader: 场景4: 后台图片上传
+    User->>ImageUploader: 选择图片
+    ImageUploader->>UploadAPI: POST /upload/image
+    UploadAPI-->>ImageUploader: {url, thumbnailUrl}
+    ImageUploader-->>User: 显示预览
+
+    Note over User,RichTextEditor: 场景5: 富文本编辑
+    User->>RichTextEditor: 编辑产品描述
+    RichTextEditor-->>AdminProducts: onChange(htmlString)
+    AdminProducts->>AdminProducts: 保存到数据库
