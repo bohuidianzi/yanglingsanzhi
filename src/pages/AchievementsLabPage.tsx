@@ -11,21 +11,21 @@ import type { Case } from '../types/api';
 // 只有左侧栏菜单项和内容区文章调自己后台API
 // ============================================================================
 
-// 原站CSS文件地址
-const ORIG_CSS_FILES = [
-  '//skl.iswc.cas.cn/images/bootstrap.min.css',
-  '//skl.iswc.cas.cn/images/swiper.min.css',
-  '//skl.iswc.cas.cn/images/common.css',
-  '//skl.iswc.cas.cn/images/style.css',
+// CSS文件 - 使用本地拷贝（原站仅支持HTTP，HTTPS下无法加载）
+const LAB_CSS_FILES = [
+  '/styles/lab-bootstrap.css',
+  '/styles/lab-swiper.css',
+  '/styles/lab-common.css',
+  '/styles/lab-style.css',
 ];
 
 // 原站基础地址
 const ORIG_BASE = 'http://skl.iswc.cas.cn';
 
-// 注入原站CSS到head
+// 注入CSS到head
 function injectOriginalCSS() {
   const links: HTMLLinkElement[] = [];
-  ORIG_CSS_FILES.forEach((href, i) => {
+  LAB_CSS_FILES.forEach((href, i) => {
     const id = `orig-css-${i}`;
     if (document.getElementById(id)) return;
     const link = document.createElement('link');
@@ -40,7 +40,7 @@ function injectOriginalCSS() {
 
 // 移除注入的CSS
 function removeOriginalCSS() {
-  ORIG_CSS_FILES.forEach((_, i) => {
+  LAB_CSS_FILES.forEach((_, i) => {
     const el = document.getElementById(`orig-css-${i}`);
     if (el) el.remove();
   });
@@ -328,20 +328,20 @@ export default function AchievementsLabPage() {
     <div style={{ fontFamily: 'Microsoft YaHei, 微软雅黑, SimSun, Arial, sans-serif' }}>
       {/* 覆盖原站CSS中的相对路径背景图，改为绝对路径 */}
       <style>{`
-        .banner { background: #fff url(//skl.iswc.cas.cn/images/header-bg.png) no-repeat center !important; background-size: cover !important; }
-        .left-title { background: #BF823E url(//skl.iswc.cas.cn/images/left-bg.png) no-repeat right !important; background-size: cover !important; }
-        .left-menu ul li.left-active { background: url(//skl.iswc.cas.cn/images/left-active.png) no-repeat right 21px !important; }
-        .search-btn { background: #DFDFDF url(//skl.iswc.cas.cn/images/search-btn.png) no-repeat center !important; }
-        .menu-xs { background: url(//skl.iswc.cas.cn/images/menu.png) no-repeat center !important; }
-        .drop-ifm { background: #F6F9FF url(//skl.iswc.cas.cn/images/nav-bg.png) no-repeat bottom !important; }
-        .drop-title { background: url(//skl.iswc.cas.cn/images/drop-title.png) no-repeat left !important; }
-        .title h3 { background: url(//skl.iswc.cas.cn/images/title-icon.png) no-repeat bottom left !important; }
+        .banner { background: #fff url(http://skl.iswc.cas.cn/images/header-bg.png) no-repeat center !important; background-size: cover !important; }
+        .left-title { background: #BF823E url(http://skl.iswc.cas.cn/images/left-bg.png) no-repeat right !important; background-size: cover !important; }
+        .left-menu ul li.left-active { background: url(http://skl.iswc.cas.cn/images/left-active.png) no-repeat right 21px !important; }
+        .search-btn { background: #DFDFDF url(http://skl.iswc.cas.cn/images/search-btn.png) no-repeat center !important; }
+        .menu-xs { background: url(http://skl.iswc.cas.cn/images/menu.png) no-repeat center !important; }
+        .drop-ifm { background: #F6F9FF url(http://skl.iswc.cas.cn/images/nav-bg.png) no-repeat bottom !important; }
+        .drop-title { background: url(http://skl.iswc.cas.cn/images/drop-title.png) no-repeat left !important; }
+        .title h3 { background: url(http://skl.iswc.cas.cn/images/title-icon.png) no-repeat bottom left !important; }
         .chnl-left .left-menu { box-shadow: 0px 0px 6px 1px rgba(93,119,130,0.16) !important; }
         /* 确保导航下拉菜单正常显示 */
         .navigation > li { position: relative; }
         .navigation > li:hover .dropdown-m { display: block; }
         /* 左侧栏菜单hover效果 */
-        .left-menu ul li:hover { background: url(//skl.iswc.cas.cn/images/left-active.png) no-repeat right 21px !important; }
+        .left-menu ul li:hover { background: url(http://skl.iswc.cas.cn/images/left-active.png) no-repeat right 21px !important; }
         .left-menu ul li:hover a { font-weight: bold; }
       `}</style>
 
@@ -350,7 +350,7 @@ export default function AchievementsLabPage() {
         <div className="banner">
           <div className="container">
             <a href={ORIG_BASE} className="head-logo" target="_blank" rel="noopener noreferrer">
-              <img src="//skl.iswc.cas.cn/images/header-logo.png" alt="实验室Logo" />
+              <img src="http://skl.iswc.cas.cn/images/header-logo.png" alt="实验室Logo" />
             </a>
             <div className="banner-left">
               <div className="head-link">
@@ -677,7 +677,7 @@ export default function AchievementsLabPage() {
             联系电话: +86-029-87012884 传真: +86-029-87016082
           </p>
           <div className="qrcode">
-            <img src="//skl.iswc.cas.cn/images/qrcode.png" alt="微信公众号" />
+            <img src="http://skl.iswc.cas.cn/images/qrcode.png" alt="微信公众号" />
             <h5>微信公众号</h5>
           </div>
         </div>
