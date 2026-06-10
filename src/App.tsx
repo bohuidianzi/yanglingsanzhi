@@ -50,9 +50,10 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
 }
 
 function App() {
+  const basename = import.meta.env.BASE_URL;
   return (
     <I18nProvider>
-      <BrowserRouter>
+      <BrowserRouter basename={basename}>
         <Suspense fallback={<Loading />}>
           <Routes>
             {/* 前台路由 - 使用 Layout */}
