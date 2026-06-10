@@ -2,8 +2,8 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 
-export default defineConfig({
-  base: '/yanglingsanzhi/',
+export default defineConfig(({ mode }) => ({
+  base: process.env.VITE_BASE || '/yanglingsanzhi/',
   plugins: [react()],
   resolve: {
     alias: {
@@ -41,4 +41,4 @@ export default defineConfig({
       },
     },
   },
-});
+}));
