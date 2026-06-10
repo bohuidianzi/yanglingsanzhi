@@ -52,6 +52,16 @@ app.use(express.urlencoded({ extended: true }));
 // 静态文件（如有 uploads 目录）
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
+// 前端静态文件（Vite build 输出）
+const distPath = path.join(__dirname, '..', 'dist');
+if (fs.existsSync(distPath)) {
+  app.use(express.static(distPath));
+  // SPA fallback：非API路由返回index.html
+  app.get(/^(?!\/api\/).*/, (req, res) => {
+    res.sendFile(path.join(distPath, 'index.html'));
+  });
+}
+
 // Health check
 app.get('/api/v1/health', (req, res) => ok(res, { status: 'ok', timestamp: new Date().toISOString() }));
 
