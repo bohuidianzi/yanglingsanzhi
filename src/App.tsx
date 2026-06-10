@@ -20,6 +20,7 @@ const CooperationPage = lazy(() => import('./pages/CooperationPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 const NewsListPage = lazy(() => import('./pages/NewsListPage'));
 const CoreAdvantagesPage = lazy(() => import('./pages/CoreAdvantagesPage'));
+const AchievementsPage = lazy(() => import('./pages/AchievementsPage'));
 
 // 后台页面懒加载
 const AdminLogin = lazy(() => import('./pages/admin/AdminLogin'));
@@ -68,6 +69,10 @@ function App() {
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/news" element={<NewsListPage />} />
               <Route path="/core-advantages" element={<CoreAdvantagesPage />} />
+              {/* 成果转化 - 独立模板页面（内置fallback数据，无需API也可正常显示） */}
+              <Route path="/achievements" element={<AchievementsPage />} />
+              <Route path="/achievements/:subSlug" element={<AchievementsPage />} />
+              <Route path="/achievements/:subSlug/:articleId" element={<AchievementsPage />} />
               {/* 通用动态栏目路由 - 所有分类页面统一由此匹配，useParams 可获取 :slug */}
               <Route path="/:slug" element={<CategoryPage />} />
               <Route path="/:slug/:subSlug" element={<CategoryPage />} />
