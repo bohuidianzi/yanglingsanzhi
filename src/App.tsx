@@ -21,6 +21,7 @@ const ContactPage = lazy(() => import('./pages/ContactPage'));
 const NewsListPage = lazy(() => import('./pages/NewsListPage'));
 const CoreAdvantagesPage = lazy(() => import('./pages/CoreAdvantagesPage'));
 const AchievementsPage = lazy(() => import('./pages/AchievementsPage'));
+const AchievementsLabPage = lazy(() => import('./pages/AchievementsLabPage'));
 
 // 后台页面懒加载
 const AdminLogin = lazy(() => import('./pages/admin/AdminLogin'));
@@ -74,6 +75,10 @@ function App() {
               <Route path="/achievements" element={<AchievementsPage />} />
               <Route path="/achievements/:subSlug" element={<AchievementsPage />} />
               <Route path="/achievements/:subSlug/:articleId" element={<AchievementsPage />} />
+              {/* 成果转化 - 实验室原站风格（独立地址） */}
+              <Route path="/achievements-lab" element={<AchievementsLabPage />} />
+              <Route path="/achievements-lab/:subSlug" element={<AchievementsLabPage />} />
+              <Route path="/achievements-lab/:subSlug/:articleId" element={<AchievementsLabPage />} />
               {/* 通用动态栏目路由 - 所有分类页面统一由此匹配，useParams 可获取 :slug */}
               <Route path="/:slug" element={<CategoryPage />} />
               <Route path="/:slug/:subSlug" element={<CategoryPage />} />
