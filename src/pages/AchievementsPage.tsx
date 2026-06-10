@@ -122,26 +122,24 @@ const FOOTER_LINKS = [
   { label: '国家自然科学基金委员会', href: 'https://www.nsfc.gov.cn/' },
 ];
 
-// 成果转化页面fallback子栏目和文章数据
+// 成果转化页面fallback子栏目和文章数据（与数据库yanglingsanzhi同步）
 const fallbackSubcategories: NavSubcategory[] = [
-  { id: 51, parent_id: 5, name: '技术成果', slug: 'tech-achievements', description: '核心专利技术与产品化成果', display_mode: 'list', sort_order: 1, status: 1, created_at: '', updated_at: '' },
-  { id: 52, parent_id: 5, name: '技术推广', slug: 'tech-promotion', description: '水利部推广目录及行业应用', display_mode: 'list', sort_order: 2, status: 1, created_at: '', updated_at: '' },
-  { id: 53, parent_id: 5, name: '产学研合作', slug: 'industry-academy', description: '与高校和科研机构的合作成果', display_mode: 'list', sort_order: 3, status: 1, created_at: '', updated_at: '' },
+  { id: 20, parent_id: 5, name: '合作单位', slug: 'partner-institutions', description: '科研院所及企事业单位合作网络', display_mode: 'list', sort_order: 1, status: 1, created_at: '', updated_at: '' },
+  { id: 21, parent_id: 5, name: '总体应用情况', slug: 'overall-application', description: '产品在全国的推广应用概况', display_mode: 'list', sort_order: 2, status: 1, created_at: '', updated_at: '' },
+  { id: 22, parent_id: 5, name: '典型案例', slug: 'typical-cases', description: '标杆项目案例展示', display_mode: 'list', sort_order: 3, status: 1, created_at: '', updated_at: '' },
+  { id: 23, parent_id: 5, name: '未来发展', slug: 'future-development', description: '智慧水保技术演进路线', display_mode: 'list', sort_order: 4, status: 1, created_at: '', updated_at: '' },
 ];
 
 const fallbackArticles: Record<number, Article[]> = {
-  51: [
-    { id: 501, subcategory_id: 51, title: '径流泥沙自动监测仪获国家发明专利', summary: '我司自主研发的径流泥沙自动监测仪荣获国家发明专利授权', content: '<p>径流泥沙自动监测仪是我司核心产品，采用光学传感与称重双重测量原理，可实时在线监测径流量、泥沙含量、输沙率等关键参数。该技术突破了传统人工采样的局限，实现了水土流失关键参数的自动化、连续化监测，精度可达毫米级。</p><p>该专利技术已成功应用于全国20余个省份的水土保持监测项目，数据可靠性得到水利部、流域机构及科研院校的广泛认可。</p>', cover_image: null, author: '杨凌三智', published_at: '2024-01-15', status: 1, sort_order: 1, created_at: '', updated_at: '' },
-    { id: 502, subcategory_id: 51, title: '全自动风蚀监测系统获实用新型专利', summary: '针对风蚀监测难题，开发集成化自动监测解决方案', content: '<p>全自动风蚀监测系统集成了风速风向传感器、集沙仪、温湿度传感器和数据处理单元，可实时监测风蚀起沙量、输沙率和气象条件。系统采用太阳能供电、4G无线传输，适用于荒漠化地区和风沙区的长期无人值守监测。</p>', cover_image: null, author: '杨凌三智', published_at: '2023-06-20', status: 1, sort_order: 2, created_at: '', updated_at: '' },
-    { id: 503, subcategory_id: 51, title: '土壤水分传感器专利技术突破', summary: '高精度土壤水分传感技术，支撑壤中流监测产品研发', content: '<p>我司自主研发的高精度土壤水分传感器采用频域反射法（FDR）原理，测量精度达±2%，响应时间小于1秒。传感器采用防腐防蚀设计，适用于长期埋设监测，为壤中流监测仪和土壤水分动态监测提供了核心技术支撑。</p>', cover_image: null, author: '杨凌三智', published_at: '2022-03-10', status: 1, sort_order: 3, created_at: '', updated_at: '' },
+  20: [
+    { id: 23, subcategory_id: 20, title: '科研院所合作单位', summary: '与多家科研院所建立长期稳定的合作关系。', content: '<p>公司与西北农林科技大学、中科院水利部水土保持研究所等单位建立了深度合作关系。</p>', cover_image: null, author: '杨凌三智', published_at: '2026-06-04T06:30:22.000Z', status: 1, sort_order: 1, created_at: '', updated_at: '' },
   ],
-  52: [
-    { id: 504, subcategory_id: 52, title: '径流泥沙自动监测仪入选水利部推广目录', summary: '产品通过水利部科技推广中心评审，正式纳入推广目录', content: '<p>经水利部科技推广中心组织的专家评审，我司径流泥沙自动监测仪凭借优异的技术指标和广泛的工程应用验证，正式入选水利部先进实用技术推广目录。这是对我司产品技术水平和工程实用性的权威认可，也为产品在全国水利系统的推广应用提供了政策支撑。</p>', cover_image: null, author: '杨凌三智', published_at: '2023-09-01', status: 1, sort_order: 1, created_at: '', updated_at: '' },
-    { id: 505, subcategory_id: 52, title: '产品通过CMA计量认证', summary: '核心产品通过中国计量认证，数据质量获权威保障', content: '<p>我司核心产品径流泥沙自动监测仪和全自动气象站顺利通过CMA（中国计量认证），标志着产品测量数据具有法律效力，可在环境监测、水利工程验收等法定场景中使用。CMA认证的通过，进一步提升了产品的市场竞争力和客户信任度。</p>', cover_image: null, author: '杨凌三智', published_at: '2024-03-01', status: 1, sort_order: 2, created_at: '', updated_at: '' },
+  21: [
+    { id: 24, subcategory_id: 21, title: '全国推广应用情况', summary: '产品已在全国多个省份推广应用，覆盖主要水土流失区。', content: '<p>截至目前，公司产品已在全国20余个省份的水土保持项目中得到广泛应用。</p>', cover_image: null, author: '杨凌三智', published_at: '2026-06-04T06:30:22.000Z', status: 1, sort_order: 1, created_at: '', updated_at: '' },
   ],
-  53: [
-    { id: 506, subcategory_id: 53, title: '与水土保持与荒漠化整治全国重点实验室签署战略合作协议', summary: '深化产学研合作，加速科技成果转化', content: '<p>杨凌三智与水土保持与荒漠化整治全国重点实验室签署战略合作协议，双方将在土壤侵蚀机理研究、监测技术研发、数据处理算法等方向开展深度合作。实验室的原创性基础研究为产品迭代提供技术源头，公司的工程化能力则将科研成果快速转化为可落地的产品与解决方案。</p>', cover_image: null, author: '杨凌三智', published_at: '2024-06-15', status: 1, sort_order: 1, created_at: '', updated_at: '' },
-    { id: 507, subcategory_id: 53, title: '联合承担国家重点研发计划项目', summary: '与中科院水保所联合攻关土壤侵蚀监测关键技术', content: '<p>杨凌三智与中国科学院水利部水土保持研究所联合承担国家重点研发计划项目"土壤侵蚀过程智能监测关键技术与装备"，项目聚焦径流泥沙实时在线监测、风蚀过程模拟和土壤水分动态预测三大方向，旨在突破现有监测技术瓶颈，研制新一代智能监测装备。</p>', cover_image: null, author: '杨凌三智', published_at: '2024-09-20', status: 1, sort_order: 2, created_at: '', updated_at: '' },
+  22: [], // 典型案例从cases表加载，fallback见下方fallbackCasesMap
+  23: [
+    { id: 26, subcategory_id: 23, title: '智慧水保未来发展方向', summary: '人工智能、物联网驱动的新一代水土保持监测体系。', content: '<p>公司正积极推进AI+水保战略，将深度学习、边缘计算等前沿技术融入监测设备，打造智慧水保新生态。</p>', cover_image: null, author: '杨凌三智', published_at: '2026-06-04T06:30:22.000Z', status: 1, sort_order: 1, created_at: '', updated_at: '' },
   ],
 };
 
