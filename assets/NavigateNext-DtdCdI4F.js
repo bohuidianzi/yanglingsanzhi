@@ -1,0 +1,1 @@
+import{ab as a,aa as t}from"./mui-core-BtURJHqT.js";import{r}from"./index-CtOMAVdM.js";var e={},o=t;Object.defineProperty(e,"__esModule",{value:!0});var u=e.default=void 0,i=o(r()),v=a;u=e.default=(0,i.default)((0,v.jsx)("path",{d:"M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"}),"NavigateNext");export{u as d};
