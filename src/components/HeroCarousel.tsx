@@ -210,7 +210,8 @@ export default function HeroCarousel({ slides: propSlides, interval = 6000 }: { 
     <Box
       id="hero-section"
       sx={{
-        minHeight: '100vh',
+        minHeight: { xs: 360, md: 520 },
+        maxHeight: { xs: 500, md: 620 },
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
