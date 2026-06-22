@@ -17,6 +17,7 @@ export interface Category {
   slug: string;
   description: string | null;
   icon: string | null;
+  cover_image: string | null;
   sort_order: number;
   status: number;
   created_at: string;

@@ -62,11 +62,11 @@ router.post(
   validate,
   async (req, res, next) => {
     try {
-      const { name, slug, description, icon, sort_order } = req.body;
+      const { name, slug, description, icon, cover_image, sort_order } = req.body;
 
       const result = await query(
-        'INSERT INTO categories (name, slug, description, icon, sort_order) VALUES (?, ?, ?, ?, ?)',
-        [name, slug, description || null, icon || null, sort_order || 0]
+        'INSERT INTO categories (name, slug, description, icon, cover_image, sort_order) VALUES (?, ?, ?, ?, ?, ?)',
+        [name, slug, description || null, icon || null, cover_image || null, sort_order || 0]
       );
 
       res.status(201).json({
@@ -95,7 +95,7 @@ router.put(
   validate,
   async (req, res, next) => {
     try {
-      const { name, slug, description, icon, sort_order, status } = req.body;
+      const { name, slug, description, icon, cover_image, sort_order, status } = req.body;
 
       const existing = await query('SELECT id FROM categories WHERE id = ?', [req.params.id]);
       if (existing.length === 0) {
@@ -113,6 +113,7 @@ router.put(
       if (slug !== undefined) { fields.push('slug = ?'); values.push(slug); }
       if (description !== undefined) { fields.push('description = ?'); values.push(description); }
       if (icon !== undefined) { fields.push('icon = ?'); values.push(icon); }
+      if (cover_image !== undefined) { fields.push('cover_image = ?'); values.push(cover_image); }
       if (sort_order !== undefined) { fields.push('sort_order = ?'); values.push(sort_order); }
       if (status !== undefined) { fields.push('status = ?'); values.push(status); }
 
