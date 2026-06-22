@@ -9,6 +9,7 @@ export const getProducts = (params?: {
   page?: number;
   pageSize?: number;
   keyword?: string;
+  is_recommended?: number;
 }) => client.get<ApiResponse<PaginatedData<Product>>>('/products', { params });
 
 export const getProduct = (id: number) =>

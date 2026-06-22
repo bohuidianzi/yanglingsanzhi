@@ -12,7 +12,7 @@ router.get(
   '/',
   async (req, res, next) => {
     try {
-      const { category_id, keyword, page = 1, pageSize = 10 } = req.query;
+      const { category_id, keyword, is_recommended, page = 1, pageSize = 10 } = req.query;
       const offset = (parseInt(page) - 1) * parseInt(pageSize);
 
       let whereClause = 'WHERE p.status = 1';
@@ -21,6 +21,11 @@ router.get(
       if (category_id) {
         whereClause += ' AND p.category_id = ?';
         params.push(category_id);
+      }
+
+      if (is_recommended !== undefined) {
+        whereClause += ' AND p.is_recommended = ?';
+        params.push(parseInt(is_recommended));
       }
 
       if (keyword) {
@@ -122,14 +127,14 @@ router.post(
     try {
       const {
         category_id, name, slug, model, summary, description,
-        cover_image, application_scenes, sort_order,
+        cover_image, application_scenes, sort_order, is_recommended,
       } = req.body;
 
       const result = await query(
-        `INSERT INTO products (category_id, name, slug, model, summary, description, cover_image, application_scenes, sort_order)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        `INSERT INTO products (category_id, name, slug, model, summary, description, cover_image, application_scenes, sort_order, is_recommended)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [category_id, name, slug, model || null, summary || null, description || null,
-         cover_image || null, application_scenes || null, sort_order || 0]
+         cover_image || null, application_scenes || null, sort_order || 0, is_recommended || 0]
       );
 
       res.status(201).json({
@@ -169,7 +174,7 @@ router.put(
 
       const {
         category_id, name, slug, model, summary, description,
-        cover_image, application_scenes, sort_order, status,
+        cover_image, application_scenes, sort_order, status, is_recommended,
       } = req.body;
 
       const fields = [];
@@ -185,6 +190,7 @@ router.put(
       if (application_scenes !== undefined) { fields.push('application_scenes = ?'); values.push(application_scenes); }
       if (sort_order !== undefined) { fields.push('sort_order = ?'); values.push(sort_order); }
       if (status !== undefined) { fields.push('status = ?'); values.push(status); }
+      if (is_recommended !== undefined) { fields.push('is_recommended = ?'); values.push(is_recommended); }
 
       if (fields.length === 0) {
         return res.status(400).json({

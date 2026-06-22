@@ -33,11 +33,13 @@ export interface Product {
   description: string | null;
   cover_image: string | null;
   application_scenes: string | null;
+  is_recommended: number;
   status: number;
   sort_order: number;
   created_at: string;
   updated_at: string;
   category?: Category;
+  category_name?: string;
   images?: ProductImage[];
   params?: ProductParam[];
   docs?: ProductDoc[];
