@@ -293,7 +293,7 @@ export default function HeroCarousel({ slides: propSlides, interval = 6000 }: { 
                 gap: 1.5,
                 px: 3.5,
                 py: 1,
-                mb: 5,
+                mb: 3,
                 borderRadius: 30,
                 border: '1px solid rgba(255,255,255,0.2)',
                 bgcolor: 'rgba(255,255,255,0.06)',
@@ -319,16 +319,16 @@ export default function HeroCarousel({ slides: propSlides, interval = 6000 }: { 
               </Typography>
             </Box>
 
-            {/* 主标题 — 巨型字体 */}
+            {/* 主标题 — 适中大小 */}
             <Typography
               sx={{
                 color: '#fff',
-                fontSize: { xs: '3rem', sm: '4rem', md: '5.5rem', lg: '6.5rem' },
+                fontSize: { xs: '2rem', sm: '2.6rem', md: '3.2rem' },
                 fontWeight: 900,
-                lineHeight: 1.08,
-                mb: 2,
-                letterSpacing: 4,
-                textShadow: '0 4px 40px rgba(0,0,0,0.5), 0 0 80px rgba(15,43,71,0.3)',
+                lineHeight: 1.15,
+                mb: 1.5,
+                letterSpacing: 2,
+                textShadow: '0 3px 20px rgba(0,0,0,0.5)',
               }}
             >
               {slide.title}
@@ -340,11 +340,11 @@ export default function HeroCarousel({ slides: propSlides, interval = 6000 }: { 
                 background: `linear-gradient(135deg, ${V2_COLORS.accent.light} 0%, #F0B860 50%, ${V2_COLORS.accent.light} 100%)`,
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
-                fontSize: { xs: '2rem', sm: '2.8rem', md: '3.8rem', lg: '4.2rem' },
+                fontSize: { xs: '1.3rem', sm: '1.6rem', md: '2rem' },
                 fontWeight: 300,
-                lineHeight: 1.15,
-                mb: 3,
-                letterSpacing: 8,
+                lineHeight: 1.2,
+                mb: 2,
+                letterSpacing: 4,
               }}
             >
               {slide.subtitle}
@@ -353,38 +353,38 @@ export default function HeroCarousel({ slides: propSlides, interval = 6000 }: { 
             {/* 描述文字 */}
             <Typography
               sx={{
-                color: 'rgba(255,255,255,0.65)',
-                fontSize: { xs: '1rem', md: '1.2rem' },
+                color: 'rgba(255,255,255,0.6)',
+                fontSize: { xs: '0.85rem', md: '0.95rem' },
                 fontWeight: 400,
-                mb: 6,
-                letterSpacing: 2,
-                maxWidth: 600,
+                mb: 3.5,
+                letterSpacing: 1,
+                maxWidth: 500,
                 mx: 'auto',
               }}
             >
               {slide.desc}
             </Typography>
 
-            {/* CTA 按钮 — 更大气 */}
-            <Box sx={{ display: 'flex', gap: 3, justifyContent: 'center', flexWrap: 'wrap' }}>
+            {/* CTA 按钮 — 适中大小 */}
+            <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap' }}>
               <Button
                 variant="outlined"
                 href="/about"
                 sx={{
                   color: '#fff',
                   borderColor: 'rgba(255,255,255,0.35)',
-                  borderWidth: 2,
-                  px: 6,
-                  py: 1.8,
-                  fontSize: '1.05rem',
+                  borderWidth: 1.5,
+                  px: { xs: 3, md: 4 },
+                  py: { xs: 0.8, md: 1 },
+                  fontSize: '0.85rem',
                   fontWeight: 500,
-                  borderRadius: 2.5,
+                  borderRadius: 2,
                   backdropFilter: 'blur(8px)',
-                  letterSpacing: 2,
+                  letterSpacing: 1,
                   '&:hover': {
                     borderColor: '#fff',
                     bgcolor: 'rgba(255,255,255,0.08)',
-                    borderWidth: 2,
+                    borderWidth: 1.5,
                   },
                 }}
               >
@@ -398,16 +398,16 @@ export default function HeroCarousel({ slides: propSlides, interval = 6000 }: { 
                 sx={{
                   bgcolor: V2_COLORS.accent.main,
                   color: '#fff',
-                  px: 6,
-                  py: 1.8,
-                  fontSize: '1.05rem',
-                  fontWeight: 700,
-                  borderRadius: 2.5,
-                  boxShadow: `0 6px 30px rgba(212,134,42,0.45), 0 0 60px rgba(212,134,42,0.15)`,
-                  letterSpacing: 2,
+                  px: { xs: 3, md: 4 },
+                  py: { xs: 0.8, md: 1 },
+                  fontSize: '0.85rem',
+                  fontWeight: 600,
+                  borderRadius: 2,
+                  boxShadow: `0 4px 20px rgba(212,134,42,0.4)`,
+                  letterSpacing: 1,
                   '&:hover': {
                     bgcolor: V2_COLORS.accent.dark,
-                    boxShadow: `0 8px 40px rgba(212,134,42,0.55), 0 0 80px rgba(212,134,42,0.2)`,
+                    boxShadow: `0 6px 24px rgba(212,134,42,0.5)`,
                   },
                 }}
               >
